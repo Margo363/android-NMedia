@@ -24,7 +24,7 @@
         android:contentDescription="@string/description_post_author_avatar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@sample/posts_avatars" />
+        app:srcCompat="@drawable/post_avatar_drawable_48dp" />
 
     <TextView
         android:id="@+id/author"
