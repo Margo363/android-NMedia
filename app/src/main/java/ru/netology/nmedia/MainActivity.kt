@@ -2,10 +2,9 @@ package ru.netology.nmedia
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.ImageButton
 import androidx.activity.viewModels
+import ru.netology.nmedia.adapter.PostsAdapter
 import ru.netology.nmedia.databinding.ActivityMainBinding
-import ru.netology.nmedia.dto.Post
 import ru.netology.nmedia.viewmodel.PostViewModel
 import java.math.RoundingMode
 import java.text.DecimalFormat
@@ -17,28 +16,15 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val viewModel: PostViewModel by viewModels()
-        viewModel.data.observe(this) { post ->
-            with(binding) {
-                author.text = post.author
-                published.text = post.published
-                content.text = post.content
-                likeCount.text = counter(post.likes)
-                like.setImageResource(
-                    if (post.likedByMe) (R.drawable.ic_baseline_like_red_favorite_24dp)
-                    else R.drawable.ic_baseline_like_favorite_border_24dp
-                )
-                shareCount.text = counter(post.share)
-                viewsCount.text = counter(post.views)
-            }
-        }
-        binding.like.setOnClickListener {
-            viewModel.like()
-        }
-        binding.share.setOnClickListener {
-            viewModel.share()
+        val adapter = PostsAdapter({ viewModel.likeById(it.id) }, { viewModel.shareById(it.id) })
+
+        binding.list.adapter = adapter
+        viewModel.data.observe(this) { posts ->
+            adapter.submitList(posts)
         }
     }
 }
+
 
 fun counter(item: Int): String {
     return when (item) {
@@ -62,7 +48,7 @@ fun counter(item: Int): String {
 }
 
 fun roundOffDecimal(number: Double): String {
-    val demicalFormat = DecimalFormat("#.#")
-    demicalFormat.roundingMode = RoundingMode.FLOOR
-    return demicalFormat.format(number).toString()
+    val decimalFormat = DecimalFormat("#.#")
+    decimalFormat.roundingMode = RoundingMode.FLOOR
+    return decimalFormat.format(number).toString()
 }
