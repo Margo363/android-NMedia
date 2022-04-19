@@ -1,8 +1,10 @@
 package ru.netology.nmedia
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.activity.viewModels
 import ru.netology.nmedia.adapter.PostsAdapter
 import ru.netology.nmedia.databinding.ActivityMainBinding
@@ -13,56 +15,62 @@ import java.math.RoundingMode
 import java.text.DecimalFormat
 
 class MainActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val groupEditPostContent = binding.groupEditPostContent
-        groupEditPostContent.visibility = View.GONE
-
         val viewModel: PostViewModel by viewModels()
         val adapter = PostsAdapter(viewModel)
+
 
         binding.list.adapter = adapter
         viewModel.data.observe(this) { posts ->
             adapter.submitList(posts)
+            binding.groupEditPost.visibility = View.GONE
         }
 
-//        binding.saveButton.setOnClickListener {
+        viewModel.editPost.observe(this) { post: Post? ->
+            val content = post?.content ?: ""
+            with(binding) {
+
+                contentEditText.setText(content)
+                if (viewModel.editPost.value == null)
+                    groupEditPost.visibility = View.GONE
+                else
+                    groupEditPost.visibility = View.VISIBLE
+            }
+        }
+        binding.saveButton.setOnClickListener {
+            with(binding.contentEditText) {
+                val content = text.toString()
+                viewModel.onSaveButtonClicked(content)
+                setText("")
+                clearFocus()
+                hideKeyboard()
+                binding.groupEditPost.visibility = View.GONE
+            }
+        }
+        binding.undoEditingButton.setOnClickListener {
+            with(binding.contentEditText) {
+                val content = text.toString()
+                viewModel.onSaveButtonClicked(content)
+                clearFocus()
+                hideKeyboard()
+                binding.groupEditPost.visibility = View.GONE
+            }
+        }
+
+
+        //               binding.saveButton.setOnClickListener {
 //            val content = binding.contentEditText.text.toString()
 //            viewModel.onSaveButtonClicked(content)
 //            binding.contentEditText.clearFocus()
 //            binding.contentEditText.hideKeyboard()
 //        }
-
-        viewModel.editPost.observe(this) { post: Post? ->
-            val content = post?.content ?: ""
-            binding.contentEditText.setText(content)
-
-            groupEditPostContent.visibility = View.VISIBLE
-        }
-
-        binding.saveButton.setOnClickListener {
-            with(binding.contentEditText) {
-                val content = text.toString()
-                viewModel.onSaveButtonClicked(content)
-
-                groupEditPostContent.visibility = View.GONE
-
-                clearFocus()
-                hideKeyboard()
-            }
-        }
-        binding.undoEditingButton.setOnClickListener {
-            groupEditPostContent.visibility = View.GONE
-
-            binding.undoEditingButton.clearFocus()
-            binding.undoEditingButton.hideKeyboard()
-        }
     }
 }
-
 
 fun counter(item: Int): String {
     return when (item) {

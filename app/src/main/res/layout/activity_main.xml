@@ -13,8 +13,8 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toTopOf="@+id/editFieldsBarrie"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        tools:layout_editor_absoluteX="-26dp"
+        app:layout_constraintVertical_bias="0.0"
+        tools:layout_editor_absoluteX="0dp"
         tools:listitem="@layout/card_post" />
 
     <androidx.constraintlayout.widget.Barrier
@@ -22,18 +22,25 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:barrierDirection="top"
-        app:constraint_referenced_ids="EditMessage,undoEditingButton"
+        app:constraint_referenced_ids="editMessage,undoEditingButton"
         tools:layout_editor_absoluteY="619dp" />
 
     <androidx.constraintlayout.widget.Group
-        android:id="@+id/groupEditPostContent"
+        android:id="@+id/groupEditPost"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="visible"
-        app:constraint_referenced_ids="contentEditText,saveButton,EditMessage,undoEditingButton" />
+        app:constraint_referenced_ids="editMessage,undoEditingButton" />
+
+<!--    <androidx.constraintlayout.widget.Group-->
+<!--        android:id="@+id/groupPostContent"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:visibility="visible"-->
+<!--        app:constraint_referenced_ids="contentEditText,saveButton" />-->
 
     <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/EditMessage"
+        android:id="@+id/editMessage"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
@@ -52,7 +59,7 @@
         android:background="@android:drawable/ic_menu_close_clear_cancel"
         app:layout_constraintBottom_toTopOf="@id/contentEditText"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/EditMessage" />
+        app:layout_constraintStart_toEndOf="@id/editMessage" />
 
 
     <androidx.appcompat.widget.AppCompatEditText

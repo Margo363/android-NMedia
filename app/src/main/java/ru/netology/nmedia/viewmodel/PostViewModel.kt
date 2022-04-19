@@ -15,9 +15,7 @@ class PostViewModel : ViewModel(), PostInteractionListener {
     val editPost = MutableLiveData<Post?>()
 
     fun onSaveButtonClicked(postContent: String) {
-        val updatedPost = editPost.value?.copy(
-            content = postContent
-        ) ?: Post(
+        val updatedPost = editPost.value?.copy(content = postContent) ?: Post(
             id = 0L,
             author = "",
             published = "",
@@ -32,6 +30,7 @@ class PostViewModel : ViewModel(), PostInteractionListener {
         repository.save(updatedPost)
         editPost.value = null
     }
+
 
     // region PostInteractionListener implementation
 
