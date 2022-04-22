@@ -15,11 +15,29 @@ class PostViewModel : ViewModel(), PostInteractionListener {
     val editPost = MutableLiveData<Post?>()
 
     fun onSaveButtonClicked(postContent: String) {
-        val updatedPost = editPost.value?.copy(content = postContent) ?: Post(
+        val updatedPost = editPost.value?.copy(content = postContent)
+            ?: Post(
+                id = 0L,
+                author = "",
+                published = "",
+                content = postContent,
+                //likes = 10_000,
+                likedByMe = false,
+                //share = 1_299_999,
+                sharedByMe = false,
+                //views = 111_598,
+                viewedByMe = false
+            )
+        repository.save(updatedPost)
+        editPost.value = null
+    }
+
+    fun emptyPost(content: String) {
+        Post(
             id = 0L,
             author = "",
             published = "",
-            content = postContent,
+            content = "",
             //likes = 10_000,
             likedByMe = false,
             //share = 1_299_999,
@@ -27,7 +45,6 @@ class PostViewModel : ViewModel(), PostInteractionListener {
             //views = 111_598,
             viewedByMe = false
         )
-        repository.save(updatedPost)
         editPost.value = null
     }
 

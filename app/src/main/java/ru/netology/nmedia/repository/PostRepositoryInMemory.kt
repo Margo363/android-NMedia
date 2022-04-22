@@ -14,8 +14,9 @@ class PostRepositoryInMemory : PostRepository {
     init {
         val posts = listOf(
             Post(
-                id = 1,
-                author = "Нетология. Университет интернет-профессий будущего",
+//                id = 0,
+                id = nextId++,
+                author = "ID = 0 - Нетология. Университет интернет-профессий будущего",
                 published = "21 мая в 18:36",
                 content = "Привет, это новая Нетология! Когда-то Нетология начиналась с интенсивов по онлайн-маркетингу. Затем появились курсы по дизайну, разработке, аналитике и управлению. Мы растём сами и помогаем расти студентам: от новичков до уверенных профессионалов. Но самое важное остаётся с нами: мы верим, что в каждом уже есть сила, которая заставляет хотеть больше, целиться выше, бежать быстрее. Наша миссия — помочь встать на путь роста и начать цепочку перемен → http://netolo.gy/fyb",
                 likes = 10_000,
@@ -26,8 +27,9 @@ class PostRepositoryInMemory : PostRepository {
                 viewedByMe = false
             ),
             Post(
-                id = 2,
-                author = "Нетология. Университет интернет-профессий будущего",
+//                id = 1,
+                id = nextId++,
+                author = "ID = 1 - Нетология. Университет интернет-профессий будущего",
                 published = "18 сентября в 10:12",
                 content = "Знаний хватит на всех: на следующей неделе разбираемся с разработкой мобильных приложений, учимся рассказывать истории и составлять PR-стратегию прямо на бесплатных занятиях \uD83D\uDC47",
                 likes = 10_000,
@@ -38,8 +40,9 @@ class PostRepositoryInMemory : PostRepository {
                 viewedByMe = false
             ),
             Post(
-                id = 3,
-                author = "Нетология. Университет интернет-профессий будущего",
+//                id = 2,
+                id = nextId++,
+                author = "ID = 2 - Нетология. Университет интернет-профессий будущего",
                 published = "11 дек в 15:06",
                 content = "Привет, это новая Нетология! Когда-то Нетология начиналась с интенсивов по онлайн-маркетингу. Затем появились курсы по дизайну, разработке, аналитике и управлению. Мы растём сами и помогаем расти студентам: от новичков до уверенных профессионалов. Но самое важное остаётся с нами: мы верим, что в каждом уже есть сила, которая заставляет хотеть больше, целиться выше, бежать быстрее. Наша миссия — помочь встать на путь роста и начать цепочку перемен → http://netolo.gy/fyb",
                 likes = 10_000,
@@ -50,8 +53,9 @@ class PostRepositoryInMemory : PostRepository {
                 viewedByMe = false
             ),
             Post(
-                id = 4,
-                author = "Нетология. Университет интернет-профессий будущего",
+//                id = 3,
+                id = nextId++,
+                author = "ID = 3 - Нетология. Университет интернет-профессий будущего",
                 published = "31 января в 00:17",
                 content = "Знаний хватит на всех: на следующей неделе разбираемся с разработкой мобильных приложений, учимся рассказывать истории и составлять PR-стратегию прямо на бесплатных занятиях \uD83D\uDC47",
                 likes = 10_000,
@@ -70,14 +74,23 @@ class PostRepositoryInMemory : PostRepository {
             "Live data should be initialized with posts"
         }
 
-    override fun likeById(id: Long) {
-        data.value = posts.map {
-            if (it.id != id) it else it.copy(likedByMe = !it.likedByMe)
-        }
-    }
+//    override fun likeById(id: Long) {
+//        data.value = posts.map {
+//            if (it.id != id) it else it.copy(likedByMe = !it.likedByMe)
+//        }
+//    }
 //    if (it.id != id) it else
 //    if (it.likedByMe) it.copy(likedByMe = !it.likedByMe, likes = it.likes - 1) else
 //    it.copy(likedByMe = !it.likedByMe, likes = it.likes + 1)
+
+    override fun likeById(id: Long) {
+        data.value = posts.map {
+            if (it.id != id) it else
+                if (it.likedByMe) it.copy(likedByMe = !it.likedByMe, likes = it.likes - 1) else
+                    it.copy(likedByMe = !it.likedByMe, likes = it.likes + 1)
+        }
+        data.value = posts
+    }
 
     override fun shareById(id: Long) {
         data.value = posts.map {
@@ -87,6 +100,10 @@ class PostRepositoryInMemory : PostRepository {
 
     override fun removeById(id: Long) {
         data.value = posts.filterNot { it.id == id }
+    }
+
+    private companion object {
+        private const val NEW_POST_ID = 0L
     }
 
     override fun save(post: Post) =
@@ -100,13 +117,9 @@ class PostRepositoryInMemory : PostRepository {
 
     private fun update(post: Post) {
         data.value = posts.map {
-            if (it.id == post.id) post else it
-        }
-
+            if (it.id != post.id) it else it.copy(content = post.content) }
     }
-
-    private companion object {
-        private const val NEW_POST_ID = 0L
-    }
-
 }
+
+
+

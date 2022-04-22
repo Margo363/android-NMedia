@@ -1,10 +1,8 @@
 package ru.netology.nmedia
 
-import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.activity.viewModels
 import ru.netology.nmedia.adapter.PostsAdapter
 import ru.netology.nmedia.databinding.ActivityMainBinding
@@ -40,19 +38,22 @@ class MainActivity : AppCompatActivity() {
                     groupEditPost.visibility = View.GONE
                 else
                     groupEditPost.visibility = View.VISIBLE
+                editMessage.setText(post?.author)
             }
         }
-        binding.saveButton.setOnClickListener {
+
+        binding.undoEditingButton.setOnClickListener {
             with(binding.contentEditText) {
                 val content = text.toString()
-                viewModel.onSaveButtonClicked(content)
+                viewModel.emptyPost(content)
                 setText("")
                 clearFocus()
                 hideKeyboard()
                 binding.groupEditPost.visibility = View.GONE
             }
         }
-        binding.undoEditingButton.setOnClickListener {
+
+        binding.saveButton.setOnClickListener {
             with(binding.contentEditText) {
                 val content = text.toString()
                 viewModel.onSaveButtonClicked(content)
