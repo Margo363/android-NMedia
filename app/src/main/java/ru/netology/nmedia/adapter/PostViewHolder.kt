@@ -53,13 +53,10 @@ class PostViewHolder(
             author.text = post.author
             published.text = post.published
             content.text = post.content
-            likeCount.text = counter(post.likes)
-            like.setImageResource(
-                if (post.likedByMe) (R.drawable.ic_baseline_like_red_favorite_24dp)
-                else R.drawable.ic_baseline_like_favorite_border_24dp
-            )
-            shareCount.text = counter(post.share)
-            viewsCount.text = counter(post.views)
+            like.text = counter(post.likes)
+            share.text = counter(post.share)
+            views.text = counter(post.views)
+            like.isChecked = post.likedByMe
         }
     }
 }

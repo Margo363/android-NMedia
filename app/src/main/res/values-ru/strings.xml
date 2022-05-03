@@ -6,6 +6,7 @@
     <string name="description_post_menu">Меню поста</string>
     <string name="description_post_like">Нравится</string>
     <string name="description_post_share">Поделиться</string>
+    <string name="description_post_views">Просмотры</string>
     <string name="remove_post_action">Удалить</string>
     <string name="edit_post_action">Изменить</string>
     <string name="post_content_hint">Содержание поста</string>

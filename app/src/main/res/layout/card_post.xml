@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="@dimen/padding_normal"
-    tools:context=".MainActivity">
+    android:padding="@dimen/padding_normal">
 
     <!--    <TextView-->
     <!--        android:id="@+id/nmedia"-->
@@ -68,11 +67,14 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/padding_normal"
         app:barrierDirection="bottom"
-        app:constraint_referenced_ids="avatar,published,menu" />
+        app:constraint_referenced_ids="avatar,published,menu"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="64dp" />
 
     <TextView
         android:id="@+id/content"
-        android:layout_width="0dp"
+        android:layout_margin="@dimen/padding_normal"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:autoLink="web"
         app:layout_constraintEnd_toEndOf="parent"
@@ -85,71 +87,54 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:barrierDirection="bottom"
-        app:constraint_referenced_ids="content" />
+        app:constraint_referenced_ids="content"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="233dp" />
 
-    <ImageButton
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/like"
+        style="@style/Widget.AppTheme.LikeButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/padding_normal"
-        android:background="@android:color/transparent"
+        android:checkable="true"
         android:contentDescription="@string/description_post_like"
+        android:fontFamily="sans-serif"
+        android:scaleType="center"
+        app:icon="@drawable/ic_likes_24dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/barrier_lower"
-        app:srcCompat="@drawable/ic_baseline_like_favorite_border_24dp" />
-
-    <TextView
-        android:id="@+id/likeCount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="@dimen/padding_normal"
-        app:layout_constraintStart_toEndOf="@+id/like"
-        app:layout_constraintTop_toBottomOf="@id/barrier_lower"
+        tools:checked="true"
         tools:text="548" />
 
-    <ImageButton
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/share"
+        style="@style/Widget.AppTheme.ShareButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/padding_normal"
-        android:layout_marginTop="@dimen/padding_normal"
-        android:background="@android:color/transparent"
         android:contentDescription="@string/description_post_share"
-        app:layout_constraintStart_toEndOf="@+id/likeCount"
+        android:fontFamily="sans-serif"
+        android:scaleType="center"
+        app:icon="@drawable/ic_baseline_share_24dp"
+        app:layout_constraintEnd_toStartOf="@id/views"
+        app:layout_constraintStart_toEndOf="@id/like"
         app:layout_constraintTop_toBottomOf="@id/barrier_lower"
-        app:srcCompat="@drawable/ic_baseline_share_24dp" />
-
-    <TextView
-        android:id="@+id/shareCount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="@dimen/padding_normal"
-        app:layout_constraintStart_toEndOf="@+id/share"
-        app:layout_constraintTop_toBottomOf="@id/barrier_lower"
+        tools:checked="true"
         tools:text="387" />
 
-    <ImageButton
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/views"
+        style="@style/Widget.AppTheme.ShareButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/padding_normal"
-        android:layout_marginEnd="8dp"
-        android:background="@android:color/transparent"
-        android:contentDescription="@string/description_post_share"
-        app:layout_constraintEnd_toStartOf="@id/viewsCount"
-        app:layout_constraintTop_toBottomOf="@id/barrier_lower"
-        app:srcCompat="@drawable/ic_baseline_views_remove_red_eye_24dp" />
-
-    <TextView
-        android:id="@+id/viewsCount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="@dimen/padding_normal"
+        android:clickable="false"
+        android:contentDescription="@string/description_post_views"
+        android:fontFamily="sans-serif"
+        android:scaleType="center"
+        app:icon="@drawable/ic_baseline_views_remove_red_eye_24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/barrier_lower"
+        tools:checked="true"
         tools:text="999" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
