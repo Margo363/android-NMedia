@@ -3,9 +3,9 @@ package ru.netology.nmedia.adapter
 import android.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import ru.netology.nmedia.R
-import ru.netology.nmedia.counter
 import ru.netology.nmedia.databinding.CardPostBinding
 import ru.netology.nmedia.dto.Post
+import ru.netology.nmedia.util.counter
 
 class PostViewHolder(
     private val binding: CardPostBinding,
@@ -24,7 +24,7 @@ class PostViewHolder(
                         listener.onRemove(post)
                         true
                     }
-                    R.id.edit -> {
+                    R.id.edit -> { //R.id.editButton ->
                         listener.onEdit(post)
                         true
                     }
@@ -44,6 +44,9 @@ class PostViewHolder(
         }
         binding.menu.setOnClickListener {
             popupMenu.show()
+        }
+        binding.video.setOnClickListener {
+            listener.onVideo(post)
         }
     }
 

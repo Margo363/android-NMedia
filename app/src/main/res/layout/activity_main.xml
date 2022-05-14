@@ -4,33 +4,44 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".activity.MainActivity">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toTopOf="@+id/editFieldsBarrie"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_bias="1.0"
         tools:layout_editor_absoluteX="0dp"
         tools:listitem="@layout/card_post" />
 
-    <androidx.constraintlayout.widget.Barrier
-        android:id="@+id/editFieldsBarrie"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:barrierDirection="top"
-        app:constraint_referenced_ids="editMessage,undoEditingButton"
-        tools:layout_editor_absoluteY="619dp" />
-
-    <androidx.constraintlayout.widget.Group
-        android:id="@+id/groupEditPost"
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:visibility="visible"
-        app:constraint_referenced_ids="editMessage,undoEditingButton" />
+        android:layout_margin="@dimen/padding_normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:contentDescription="@string/add_post"
+        app:srcCompat="@drawable/ic_add_24dp"
+        />
+
+<!--    <androidx.constraintlayout.widget.Barrier-->
+<!--        android:id="@+id/editFieldsBarrie"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="0dp"-->
+<!--        app:barrierDirection="top"-->
+<!--        app:constraint_referenced_ids="editMessage,undoEditingButton"-->
+<!--        tools:layout_editor_absoluteY="619dp" />-->
+
+<!--    <androidx.constraintlayout.widget.Group-->
+<!--        android:id="@+id/groupEditPost"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:visibility="visible"-->
+<!--        app:constraint_referenced_ids="editMessage,undoEditingButton" />-->
 
 <!--    <androidx.constraintlayout.widget.Group-->
 <!--        android:id="@+id/groupPostContent"-->
@@ -39,50 +50,50 @@
 <!--        android:visibility="visible"-->
 <!--        app:constraint_referenced_ids="contentEditText,saveButton" />-->
 
-    <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/editMessage"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
-        android:hint="@string/edit_message"
-        android:importantForAutofill="no"
-        android:padding="@dimen/padding_normal"
-        android:textColorHint="#757575"
-        app:layout_constraintBottom_toTopOf="@id/contentEditText"
-        app:layout_constraintEnd_toStartOf="@id/undoEditingButton"
-        app:layout_constraintStart_toStartOf="parent" />
+<!--    <androidx.appcompat.widget.AppCompatEditText-->
+<!--        android:id="@+id/editMessage"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:background="@android:color/transparent"-->
+<!--        android:hint="@string/edit_message"-->
+<!--        android:importantForAutofill="no"-->
+<!--        android:padding="@dimen/padding_normal"-->
+<!--        android:textColorHint="#757575"-->
+<!--        app:layout_constraintBottom_toTopOf="@id/contentEditText"-->
+<!--        app:layout_constraintEnd_toStartOf="@id/undoEditingButton"-->
+<!--        app:layout_constraintStart_toStartOf="parent" />-->
 
-    <View
-        android:id="@+id/undoEditingButton"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:background="@android:drawable/ic_menu_close_clear_cancel"
-        app:layout_constraintBottom_toTopOf="@id/contentEditText"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/editMessage" />
+<!--    <View-->
+<!--        android:id="@+id/undoEditingButton"-->
+<!--        android:layout_width="48dp"-->
+<!--        android:layout_height="48dp"-->
+<!--        android:background="@android:drawable/ic_menu_close_clear_cancel"-->
+<!--        app:layout_constraintBottom_toTopOf="@id/contentEditText"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toEndOf="@id/editMessage" />-->
 
 
-    <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/contentEditText"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
-        android:hint="@string/post_content_hint"
-        android:importantForAutofill="no"
-        android:inputType="textMultiLine"
-        android:padding="@dimen/padding_normal"
-        android:textColorHint="#757575"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/saveButton"
-        app:layout_constraintStart_toStartOf="parent" />
+<!--    <androidx.appcompat.widget.AppCompatEditText-->
+<!--        android:id="@+id/contentEditText"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:background="@android:color/transparent"-->
+<!--        android:hint="@string/post_content_hint"-->
+<!--        android:importantForAutofill="no"-->
+<!--        android:inputType="textMultiLine"-->
+<!--        android:padding="@dimen/padding_normal"-->
+<!--        android:textColorHint="#757575"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toStartOf="@id/saveButton"-->
+<!--        app:layout_constraintStart_toStartOf="parent" />-->
 
-    <View
-        android:id="@+id/saveButton"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:background="@android:drawable/ic_menu_send"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+<!--    <View-->
+<!--        android:id="@+id/saveButton"-->
+<!--        android:layout_width="48dp"-->
+<!--        android:layout_height="48dp"-->
+<!--        android:background="@android:drawable/ic_menu_send"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

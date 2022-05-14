@@ -1,12 +1,11 @@
 package ru.netology.nmedia.repository
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import ru.netology.nmedia.dto.Post
 
 class PostRepositoryInMemory : PostRepository {
 
-    private var nextId = 4L
+    private var nextId = 0L
 
     override val data: MutableLiveData<List<Post>>
 
@@ -14,7 +13,7 @@ class PostRepositoryInMemory : PostRepository {
     init {
         val posts = listOf(
             Post(
-//                id = 0,
+ //               id = 1,
                 id = nextId++,
                 author = "Нетология. Университет интернет-профессий будущего",
                 published = "21 мая в 18:36",
@@ -24,10 +23,11 @@ class PostRepositoryInMemory : PostRepository {
                 share = 1_299_999,
                 sharedByMe = false,
                 views = 111_598,
-                viewedByMe = false
+                viewedByMe = false,
+                video = "https://www.youtube.com/watch?v=WhWc3b3KhnY"
             ),
             Post(
-//                id = 1,
+ //               id = 2,
                 id = nextId++,
                 author = "Нетология. Университет интернет-профессий будущего",
                 published = "18 сентября в 10:12",
@@ -37,10 +37,11 @@ class PostRepositoryInMemory : PostRepository {
                 share = 1_299_999,
                 sharedByMe = false,
                 views = 111_598,
-                viewedByMe = false
+                viewedByMe = false,
+                video = "https://www.youtube.com/watch?v=WhWc3b3KhnY"
             ),
             Post(
-//                id = 2,
+ //               id = 3,
                 id = nextId++,
                 author = "Нетология. Университет интернет-профессий будущего",
                 published = "11 дек в 15:06",
@@ -50,38 +51,20 @@ class PostRepositoryInMemory : PostRepository {
                 share = 1_299_999,
                 sharedByMe = false,
                 views = 111_598,
-                viewedByMe = false
+                viewedByMe = false,
+                video = "https://www.youtube.com/watch?v=WhWc3b3KhnY"
             ),
-            Post(
-//                id = 3,
-                id = nextId++,
-                author = "Нетология. Университет интернет-профессий будущего",
-                published = "31 января в 00:17",
-                content = "Знаний хватит на всех: на следующей неделе разбираемся с разработкой мобильных приложений, учимся рассказывать истории и составлять PR-стратегию прямо на бесплатных занятиях \uD83D\uDC47",
-                likes = 10_000,
-                likedByMe = false,
-                share = 1_299_999,
-                sharedByMe = false,
-                views = 111_598,
-                viewedByMe = false
-            )
+
+
         )
         data = MutableLiveData(posts)
     }
 
-    private val posts: List<Post>
+
+    private val posts
         get() = checkNotNull(data.value) {
             "Live data should be initialized with posts"
         }
-
-//    override fun likeById(id: Long) {
-//        data.value = posts.map {
-//            if (it.id != id) it else it.copy(likedByMe = !it.likedByMe)
-//        }
-//    }
-//    if (it.id != id) it else
-//    if (it.likedByMe) it.copy(likedByMe = !it.likedByMe, likes = it.likes - 1) else
-//    it.copy(likedByMe = !it.likedByMe, likes = it.likes + 1)
 
     override fun likeById(id: Long) {
         data.value = posts.map {
@@ -96,6 +79,7 @@ class PostRepositoryInMemory : PostRepository {
         data.value = posts.map {
             if (it.id != id) it else it.copy(share = (it.share + 1))
         }
+        data.value = posts
     }
 
     override fun removeById(id: Long) {
@@ -117,7 +101,8 @@ class PostRepositoryInMemory : PostRepository {
 
     private fun update(post: Post) {
         data.value = posts.map {
-            if (it.id != post.id) it else it.copy(content = post.content) }
+            if (it.id != post.id) post else it
+        }
     }
 }
 
