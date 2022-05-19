@@ -24,7 +24,7 @@ class PostViewHolder(
                         listener.onRemove(post)
                         true
                     }
-                    R.id.edit -> { //R.id.editButton ->
+                    R.id.editPost -> { //R.id.editButton ->
                         listener.onEdit(post)
                         true
                     }
