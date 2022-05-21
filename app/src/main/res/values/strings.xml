@@ -8,6 +8,12 @@
     <string name="description_post_views">Views</string>
     <string name="remove_post_action">Remove</string>
     <string name="edit_post_action">Edit</string>
-    <string name="post_content_hint">Post content</string>
+    <string name="post_content">Post content</string>
     <string name="edit_message">Edit Message</string>
+    <string name="description_ok_post_save">Save</string>
+    <string name="add_post">Add post</string>
+    <string name="chooser_share_post">Share post</string>
+    <string name="enter_video_url">enter video url</string>
+    <string name="go_to_YOUTUBE">go to YOUTUBE</string>
+
 </resources>

@@ -9,6 +9,12 @@
     <string name="description_post_views">Просмотры</string>
     <string name="remove_post_action">Удалить</string>
     <string name="edit_post_action">Изменить</string>
-    <string name="post_content_hint">Содержание поста</string>
+    <string name="post_content">Содержание поста</string>
     <string name="edit_message">Изменить сообщение</string>
+    <string name="description_ok_post_save">Сохранить</string>
+    <string name="add_post">Добавить пост</string>
+    <string name="chooser_share_post">Поделиться</string>
+    <string name="enter_video_url">Ввести url адрес видео</string>
+    <string name="go_to_YOUTUBE">переходи на YOUTUBE</string>
+
 </resources>

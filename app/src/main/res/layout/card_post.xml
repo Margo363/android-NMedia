@@ -50,16 +50,26 @@
         app:layout_constraintTop_toBottomOf="@id/author"
         tools:text="@sample/posts.json/data/published" />
 
-    <ImageButton
+<!--    <ImageButton-->
+<!--        android:id="@+id/menu"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginBottom="@dimen/padding_normal"-->
+<!--        android:background="@android:color/transparent"-->
+<!--        android:contentDescription="@string/description_post_menu"-->
+<!--        android:src="@drawable/"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
+
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/menu"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/padding_normal"
-        android:background="@android:color/transparent"
+        style="@style/Widget.AppTheme.MenuButton"
         android:contentDescription="@string/description_post_menu"
-        android:src="@drawable/ic_baseline_more_vert_24dp"
+        android:scaleType="center"
+        app:icon="@drawable/ic_baseline_more_vert_menu_24dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        tools:ignore="MissingConstraints" />
+
 
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/barrier"
@@ -102,7 +112,7 @@
         android:scaleType="center"
         app:icon="@drawable/ic_likes_24dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/barrier_lower"
+        app:layout_constraintTop_toBottomOf="@id/video"
         tools:checked="true"
         tools:text="548" />
 
@@ -117,7 +127,7 @@
         app:icon="@drawable/ic_baseline_share_24dp"
         app:layout_constraintEnd_toStartOf="@id/views"
         app:layout_constraintStart_toEndOf="@id/like"
-        app:layout_constraintTop_toBottomOf="@id/barrier_lower"
+        app:layout_constraintTop_toBottomOf="@id/video"
         tools:checked="true"
         tools:text="387" />
 
@@ -132,9 +142,17 @@
         android:scaleType="center"
         app:icon="@drawable/ic_baseline_views_remove_red_eye_24dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/barrier_lower"
+        app:layout_constraintTop_toBottomOf="@id/video"
         tools:checked="true"
         tools:text="999" />
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/video"
+        style="@style/TextAppearance.AppCompat.Medium"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="@dimen/padding_normal"
+        app:layout_constraintTop_toBottomOf="@id/content"
+        android:hint="@string/go_to_YOUTUBE"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
