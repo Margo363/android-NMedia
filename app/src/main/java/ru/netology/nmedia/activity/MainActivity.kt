@@ -61,12 +61,11 @@ class MainActivity : AppCompatActivity() {
             registerForActivityResult(NewPostActivity.ResultContract) { newPostContent ->
                 newPostContent ?: return@registerForActivityResult
                 newPostContent.first?.let { viewModel.changeContent(newPostContent) }
-                viewModel.save()
             }
 
 
         viewModel.navigateToNewPostScreen.observe(this)
-        { postContent ->
+        {
             newPostLauncher.launch()
         }
 

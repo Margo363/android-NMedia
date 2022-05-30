@@ -1,16 +1,20 @@
 package ru.netology.nmedia.viewmodel
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import ru.netology.nmedia.adapter.PostInteractionListener
 import ru.netology.nmedia.dto.Post
 import ru.netology.nmedia.repository.PostRepository
-import ru.netology.nmedia.repository.PostRepositoryInMemory
+import ru.netology.nmedia.repository.PostRepositoryInFileImpl
 import ru.netology.nmedia.util.Event
 
-class PostViewModel : ViewModel(), PostInteractionListener {
+class PostViewModel (
+    application: Application
+) : AndroidViewModel(application),
+    PostInteractionListener {
 
-    private val repository: PostRepository = PostRepositoryInMemory()
+    private val repository: PostRepository = PostRepositoryInFileImpl(application)
     val data by repository::data
 
     private var editedPost = Post(
@@ -47,15 +51,6 @@ class PostViewModel : ViewModel(), PostInteractionListener {
     val navigateToNewPostScreen = Event<String>()
     val navigateToEditPostScreen = Event<String>()
     val navigateToVideoScreen = Event<String>()
-
-
-    fun save() {
-        val edited = checkNotNull(edited.value) {
-            "Edited post should not be null"
-        }
-        repository.save(edited)
-        this.edited.value = empty
-    }
 
     fun changeContent(content: Pair<String?, String?>) {
         val textContent = content.first

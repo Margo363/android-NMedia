@@ -18,9 +18,9 @@ class NewPostActivity : AppCompatActivity() {
         val binding = ActivityNewPostBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.edit.requestFocus()
+        binding.editPost.requestFocus()
         binding.ok.setOnClickListener {
-            onOkButtonClicked(binding.edit.text,binding.videoUrl.text) }
+            onOkButtonClicked(binding.editPost.text,binding.videoUrl.text) }
     }
 
     private fun onOkButtonClicked(text: Editable, videoUrl: Editable) {

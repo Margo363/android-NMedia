@@ -19,11 +19,11 @@ class EditPostActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val text = intent.getStringExtra(CONTENT_KEY)
-        binding.edit.setText(text)
-        binding.edit.requestFocus()
+        binding.editPost.setText(text)
+        binding.editPost.requestFocus()
 
         binding.ok.setOnClickListener {
-            onOkButtonClicked(binding.edit.text, binding.videoUrl.text)
+            onOkButtonClicked(binding.editPost.text, binding.videoUrl.text)
         }
     }
 
