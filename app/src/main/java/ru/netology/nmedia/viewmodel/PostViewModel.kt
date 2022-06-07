@@ -3,22 +3,20 @@ package ru.netology.nmedia.viewmodel
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import ru.netology.nmedia.adapter.PostInteractionListener
 import ru.netology.nmedia.database.AppDb
 import ru.netology.nmedia.dto.Post
 import ru.netology.nmedia.repository.PostRepository
-import ru.netology.nmedia.repository.PostRepositoryInMemory
-import ru.netology.nmedia.repository.PostRepositorySQLiteImpl
+import ru.netology.nmedia.repository.PostRepositoryRoomImpl
 
-//class PostViewModel : ViewModel(), PostInteractionListener {
+
 class PostViewModel(application: Application) : AndroidViewModel(application),
     PostInteractionListener {
 
-    private val repository: PostRepository = PostRepositorySQLiteImpl(
+    private val repository: PostRepository = PostRepositoryRoomImpl(
         AppDb.getInstance(application).postDao
     )
-    val data by repository::data //val data get() = repository.data
+    val data by repository::data
 
     val editPost = MutableLiveData<Post?>()
 

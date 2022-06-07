@@ -14,8 +14,7 @@ object PostsTable {
         ${Column.LIKED_BY_ME.columnName} BOOLEAN NOT NULL DEFAULT 0,
         ${Column.LIKES.columnName} INTEGER NOT NULL DEFAULT 0,
         ${Column.SHARE.columnName} INTEGER NOT NULL DEFAULT 0,
-        ${Column.VIEWS.columnName} INTEGER NOT NULL DEFAULT 0,
-        ${Column.VIDEO.columnName} TEXT)
+        ${Column.VIEWS.columnName} INTEGER NOT NULL DEFAULT 0
     """.trimIndent()
 
     enum class Column(val columnName: String) {
@@ -26,7 +25,6 @@ object PostsTable {
         LIKED_BY_ME("likedByMe"),
         LIKES("likes"),
         SHARE("reposts"),
-        VIEWS("watches"),
-        VIDEO("video")
+        VIEWS("watches")
     }
 }
